@@ -6,7 +6,7 @@
 #    By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/15 18:04:28 by ehosta            #+#    #+#              #
-#    Updated: 2025/02/26 15:54:43 by ehosta           ###   ########.fr        #
+#    Updated: 2025/02/26 18:47:09 by ehosta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ NAME	= so_long
 MAKE_DIR	:=	.make/
 override	BUILD_DIR	:=	$(MAKE_DIR)$(shell git branch --show-current)/
 override	SRC_DIR		:=	src/
-override	SRCS		:=	main
+override	SRCS		:=	main so_long_utils parsing/create_line \
+							parsing/init_parsing parsing/parsing_utils \
+							parsing/parsing parsing/tile
 override	SRC			:=	$(addprefix $(SRC_DIR),$(addsuffix .c,$(SRCS)))
 override	OBJ			:=	$(patsubst $(SRC_DIR)%.c,$(BUILD_DIR)%.o,$(SRC))
 override	DEPS		:=	$(patsubst %.o,%.d,$(OBJ))
@@ -59,6 +61,7 @@ force:
 .PHONY: clean
 clean:
 	make -C $(LIBFT) clean
+	make -C $(MLX) clean
 	$(RM) $(RMFLAGS) $(BUILD_DIR)
 
 .PHONY: fclean
