@@ -6,7 +6,7 @@
 #    By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/15 18:04:28 by ehosta            #+#    #+#              #
-#    Updated: 2025/02/26 18:47:09 by ehosta           ###   ########.fr        #
+#    Updated: 2025/02/27 11:04:53 by ehosta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,13 @@ NAME	= so_long
 MAKE_DIR	:=	.make/
 override	BUILD_DIR	:=	$(MAKE_DIR)$(shell git branch --show-current)/
 override	SRC_DIR		:=	src/
-override	SRCS		:=	main so_long_utils parsing/create_line \
-							parsing/init_parsing parsing/parsing_utils \
-							parsing/parsing parsing/tile
+override	PARSING_SRC	:=	check_file check_lines check_map check_xpm \
+							create_map init_so_long
+override	RENDER_SRC	:=	init_game
+override	UTILS_SRC	:=	fd tile xpm toolbox errors
+override	SRCS		:=	main $(addprefix parsing/,$(PARSING_SRC)) \
+							$(addprefix rendering/,$(RENDER_SRC)) \
+							$(addprefix utils/,$(UTILS_SRC))
 override	SRC			:=	$(addprefix $(SRC_DIR),$(addsuffix .c,$(SRCS)))
 override	OBJ			:=	$(patsubst $(SRC_DIR)%.c,$(BUILD_DIR)%.o,$(SRC))
 override	DEPS		:=	$(patsubst %.o,%.d,$(OBJ))

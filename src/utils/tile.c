@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   tile.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 17:12:47 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/26 18:38:31 by ehosta           ###   ########.fr       */
+/*   Created: 2025/02/26 18:11:30 by ehosta            #+#    #+#             */
+/*   Updated: 2025/02/27 09:27:49 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	parse_map(t_sl *sl, const char *filename)
+void	set_player(t_sl *sl, int x, int y)
 {
-	if (!init_parsing(sl, filename))
-		return (sl->status);
-	if (!create_line(sl, filename))
-		return (sl->status);
-	return (sl->status);
+	sl->map[y * sl->width + x] = PLAYER;
+	sl->player_pos.x = x;
+	sl->player_pos.y = y;
+	sl->players++;
+}
+
+void	set_end(t_sl *sl, int x, int y)
+{
+	sl->map[y * sl->width + x] = END;
+	sl->end_pos.x = x;
+	sl->end_pos.y = y;
+	sl->ends++;
+}
+
+void	add_collectible(t_sl *sl, int x, int y)
+{
+	sl->map[y * sl->width + x] = COLLECTIBLE;
+	sl->collectibles++;
 }

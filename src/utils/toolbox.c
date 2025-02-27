@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   toolbox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:13:37 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/26 18:45:16 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 11:39:19 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ int	update_status(t_sl *sl, int err)
 
 int	error_handler(int status)
 {
-	static char	*errors[8] = {
-		" [-] Filename error.\n",
-		" [-] File extension error.\n",
-		" [-] Error while opening map.\n",
-		" [-] The map is not a rectangle.\n",
-		" [-] A heap memory allocation failed.\n",
-		" [-] Error while closing map.\n",
-		" [-] An invalid character is present.\n",
-		" [-] Only one argument (a map) is valid.\n"
-	};
 	const int	bits = sizeof(status) * 8;
 	int			i;
 
@@ -40,7 +30,7 @@ int	error_handler(int status)
 	while (++i < bits)
 	{
 		if (status & (1 << i))
-			ft_eprintf(errors[i]);
+			ft_eprintf(error_strings()[i]);
 	}
 	ft_eprintf(RESET);
 	return (EXIT_FAILURE);
@@ -48,6 +38,34 @@ int	error_handler(int status)
 
 void	free_everything(t_sl *sl)
 {
-	if (sl->line)
-		free(sl->line);
+	if (sl->map)
+		free(sl->map);
+}
+
+void	print_map(t_sl *sl, int x_pin, int y_pin)
+{
+	int		x;
+	size_t	y;
+
+	y = 0;
+	while (y < sl->height)
+	{
+		x = -1;
+		while ((size_t)++x < sl->width)
+		{
+			if (x == x_pin && (int)y == y_pin)
+				ft_putstr_fd(RED, 1);
+			else if (sl->map[y * sl->width + x] >= TILE_ID_OFFSET)
+				ft_putstr_fd(BLUE, 1);
+			else if (sl->map[y * sl->width + x] == WALL)
+				ft_putstr_fd(CYAN, 1);
+			else
+				ft_putstr_fd(MAGENTA, 1);
+			ft_putchar_fd(sl->map[y * sl->width + x] + '0', 1);
+			ft_putchar_fd(' ', 1);
+			ft_putstr_fd(RESET, 1);
+		}
+		ft_putchar_fd('\n', 1);
+		y++;
+	}
 }

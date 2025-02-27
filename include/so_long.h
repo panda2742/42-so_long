@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:35:39 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/26 18:42:14 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 15:52:44 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ typedef struct s_pos
 	int	y;
 }		t_pos;
 
+typedef struct s_game
+{
+	t_pos	player;
+	int		moves;
+	int		collected;
+	void	*mlx;
+}			t_game;
+
 typedef struct s_sl
 {
 	int		status;
@@ -45,19 +53,14 @@ typedef struct s_sl
 	size_t	height;
 	size_t	sl_len;
 	int		map_fd;
-	int		*line;
+	int		*map;
 	int		collectibles;
 	int		players;
 	int		ends;
 	t_pos	player_pos;
 	t_pos	end_pos;
+	t_game	game;
 }			t_sl;
-
-typedef struct s_sl_parsing
-{
-	t_bool	player_placed;
-	t_bool	valid_walls;
-}			t_sl_parsing;
 
 # define E_FILENAME 0b1
 # define E_FILEEXT 0b10
@@ -67,19 +70,37 @@ typedef struct s_sl_parsing
 # define E_CLOSEFD 0b100000
 # define E_WRONGTILE 0b1000000
 # define E_WRONGARGS 0b10000000
+# define E_PLAYERS 0b100000000
+# define E_ENDS 0b1000000000
+# define E_COLLECTIBLES 0b10000000000
+# define E_DRYEND 0b100000000000
+# define E_DRYCOLLECTIBLE 0b1000000000000
+# define E_WALLERROR 0b10000000000000
 
-int		update_status(t_sl *sl, int err);
-int		error_handler(int status);
-void	free_everything(t_sl *sl);
-int		parse_map(t_sl *sl, const char *filename);
-t_bool	init_parsing(t_sl *sl, const char *filename);
-t_bool	create_line(t_sl *sl, const char *filename);
+# define XPM_IMAGES 0
 
+/* Parsing */
+t_bool	check_file(t_sl *sl, const char *filename);
+t_bool	check_lines(t_sl *sl, const char *filename);
+t_bool	check_map(t_sl *sl);
+t_bool	check_xpm(t_sl *sl, const char *filename);
+t_bool	create_map(t_sl *sl, const char *filename);
+int		init_so_long(t_sl *sl, const char *filename);
+
+/* Rendering */
+int		init_game(t_sl *sl);
+
+/* Utils */
 t_bool	try_open(t_sl *sl, const char *filename);
 t_bool	try_close(t_sl *sl);
-
 void	set_player(t_sl *sl, int x, int y);
 void	set_end(t_sl *sl, int x, int y);
 void	add_collectible(t_sl *sl, int x, int y);
+char	**get_xpm(void);
+int		update_status(t_sl *sl, int err);
+int		error_handler(int status);
+void	free_everything(t_sl *sl);
+void	print_map(t_sl *sl, int x_pin, int y_pin);
+char	**error_strings(void);
 
 #endif

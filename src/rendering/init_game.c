@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tile.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 18:11:30 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/26 18:19:25 by ehosta           ###   ########.fr       */
+/*   Created: 2025/02/27 09:43:19 by ehosta            #+#    #+#             */
+/*   Updated: 2025/02/27 14:35:11 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_player(t_sl *sl, int x, int y)
+int	init_game(t_sl *sl)
 {
-	sl->line[y * sl->width + x] = PLAYER;
-	sl->player_pos.x = x;
-	sl->player_pos.y = y;
-	sl->players++;
-}
+	t_game	g;
 
-void	set_end(t_sl *sl, int x, int y)
-{
-	sl->line[y * sl->width + x] = END;
-	sl->end_pos.x = x;
-	sl->end_pos.y = y;
-	sl->ends++;
-}
-
-void	add_collectible(t_sl *sl, int x, int y)
-{
-	sl->line[y * sl->width + x] = COLLECTIBLE;
-	sl->collectibles++;
+	g = sl->game;
+	return (sl->status);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_line.c                                      :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:27:21 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/26 18:37:33 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 09:51:48 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_bool	_read_and_fill(t_sl *sl);
 static void		_fill_line(t_sl *sl, char *line, int x, int y);
 
-t_bool	create_line(t_sl *sl, const char *filename)
+t_bool	create_map(t_sl *sl, const char *filename)
 {
 	if (!try_open(sl, filename))
 		return (false);
@@ -43,8 +43,8 @@ static t_bool	_read_and_fill(t_sl *sl)
 	}
 	sl->width = ft_strlenc(line, '\n');
 	sl->sl_len = sl->width * sl->height;
-	sl->line = malloc(sl->sl_len * sizeof(int));
-	if (NULL == sl->line)
+	sl->map = malloc(sl->sl_len * sizeof(int));
+	if (NULL == sl->map)
 	{
 		free(line);
 		update_status(sl, E_MALLOC);
@@ -65,9 +65,9 @@ static void	_fill_line(t_sl *sl, char *line, int x, int y)
 		while ((size_t)++x < sl->width)
 		{
 			if (line[x] == '1')
-				sl->line[y * sl->width + x] = WALL;
+				sl->map[y * sl->width + x] = WALL;
 			else if (line[x] == '0')
-				sl->line[y * sl->width + x] = FLOOR;
+				sl->map[y * sl->width + x] = FLOOR;
 			else if (line[x] == 'P')
 				set_player(sl, x, y);
 			else if (line[x] == 'C')
