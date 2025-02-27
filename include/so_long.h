@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:35:39 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 15:52:44 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:28:42 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,21 @@ typedef struct s_pos
 	int	y;
 }		t_pos;
 
+typedef struct s_img
+{
+	void	*ptr;
+	int		w;
+	int		h;
+}			t_img;
+
 typedef struct s_game
 {
 	t_pos	player;
 	int		moves;
 	int		collected;
 	void	*mlx;
+	void	*win;
+	t_img	imgs[5];
 }			t_game;
 
 typedef struct s_sl
@@ -76,8 +85,12 @@ typedef struct s_sl
 # define E_DRYEND 0b100000000000
 # define E_DRYCOLLECTIBLE 0b1000000000000
 # define E_WALLERROR 0b10000000000000
+# define E_XPMNAME 0b100000000000000
+# define E_XPMEXT 0b1000000000000000
+# define E_OPENXPM 0b10000000000000000
+# define E_CLOSEXPM 0b100000000000000000
 
-# define XPM_IMAGES 0
+# define XPM_IMAGES 5
 
 /* Parsing */
 t_bool	check_file(t_sl *sl, const char *filename);
@@ -93,6 +106,8 @@ int		init_game(t_sl *sl);
 /* Utils */
 t_bool	try_open(t_sl *sl, const char *filename);
 t_bool	try_close(t_sl *sl);
+t_bool	try_open_xpm(t_sl *sl, const char *filename);
+t_bool	try_close_xpm(t_sl *sl);
 void	set_player(t_sl *sl, int x, int y);
 void	set_end(t_sl *sl, int x, int y);
 void	add_collectible(t_sl *sl, int x, int y);

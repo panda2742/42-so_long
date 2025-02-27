@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 19:14:40 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 14:27:23 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:30:03 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ static void	_init_so_long(t_sl *sl)
 	sl->game.moves = 0;
 	sl->game.player.x = 0;
 	sl->game.player.y = 0;
+	sl->game.mlx = NULL;
+	sl->game.win = NULL;
 }
