@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:35:39 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 16:28:42 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:40:43 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		init_so_long(t_sl *sl, const char *filename);
 
 /* Rendering */
 int		init_game(t_sl *sl);
+void	render_map(t_sl *sl);
 
 /* Utils */
 t_bool	try_open(t_sl *sl, const char *filename);
