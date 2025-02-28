@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:13:37 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 11:39:19 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:23:30 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,28 @@ int	error_handler(int status)
 
 void	free_everything(t_sl *sl)
 {
+	t_game	*g;
+	int		i;
+
 	if (sl->map)
 		free(sl->map);
+	g = &sl->game;
+	i = -1;
+	while (++i < XPM_IMAGES)
+	{
+		if (g->imgs[i].ptr)
+		{
+			mlx_destroy_image(g->mlx, g->imgs[i].ptr);
+		}
+	}
+	if (g->win)
+	{
+		mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
+	display_bye_bye();
+	exit(EXIT_SUCCESS);
 }
 
 void	print_map(t_sl *sl, int x_pin, int y_pin)

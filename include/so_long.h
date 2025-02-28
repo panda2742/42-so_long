@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:35:39 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/28 12:06:53 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:22:17 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_sl
 # define E_XPMEXT 0b1000000000000000
 # define E_OPENXPM 0b10000000000000000
 # define E_CLOSEXPM 0b100000000000000000
+# define E_MLXERROR 0b1000000000000000000
 
 /* Parsing */
 t_bool	check_file(t_sl *sl, const char *filename);
@@ -109,6 +110,10 @@ int		init_so_long(t_sl *sl, const char *filename);
 int		init_game(t_sl *sl);
 void	render_map(t_sl *sl);
 void	game_hooks(t_sl *sl);
+void	display_moves(t_sl *sl);
+void	display_collected_coin(t_sl *sl);
+void	display_bye_bye(void);
+void	display_rules(void);
 
 /* Utils */
 t_bool	try_open(t_sl *sl, const char *filename);

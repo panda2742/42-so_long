@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:12:47 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 11:17:10 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 15:25:52 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	init_so_long(t_sl *sl, const char *filename)
 		if (!check_xpm(sl, get_xpm()[i]))
 			return (sl->status);
 	}
-	print_map(sl, 10, 3);
 	return (sl->status);
 }

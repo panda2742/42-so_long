@@ -6,14 +6,14 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 19:14:40 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 16:30:03 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 15:47:44 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static void	_start(int argc, char **argv, t_sl *sl);
-static void	_init_so_long(t_sl *sl);
+static void	_init_sl_vars(t_sl *sl);
 
 int	main(int argc, char **argv)
 {
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 
 static void	_start(int argc, char **argv, t_sl *sl)
 {
-	_init_so_long(sl);
+	_init_sl_vars(sl);
 	if (2 != argc)
 	{
 		update_status(sl, E_WRONGARGS);
@@ -38,7 +38,7 @@ static void	_start(int argc, char **argv, t_sl *sl)
 		return ;
 }
 
-static void	_init_so_long(t_sl *sl)
+static void	_init_sl_vars(t_sl *sl)
 {
 	sl->status = 0b0;
 	sl->width = 0;
