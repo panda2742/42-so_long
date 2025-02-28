@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 09:47:00 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 12:03:17 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 10:56:41 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	_flood_map_and_check(t_sl *sl)
 	while (++i < sl->sl_len)
 	{
 		tile = sl->map[i];
-		if (WALL == tile || tile >= TILE_ID_OFFSET)
+		if (WALL == tile || tile > TILE_ID_OFFSET)
 			continue ;
 		if (END == tile)
 			update_status(sl, E_DRYEND);
@@ -58,7 +58,7 @@ static void	_flood_tile(t_sl *sl, int x, int y)
 {
 	const t_map_tile	tile = sl->map[y * sl->width + x];
 
-	if (WALL == tile || tile >= TILE_ID_OFFSET)
+	if (WALL == tile || tile > TILE_ID_OFFSET)
 		return ;
 	sl->map[y * sl->width + x] = tile + TILE_ID_OFFSET;
 	_flood_tile(sl, x + 1, y);

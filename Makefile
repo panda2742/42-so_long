@@ -6,7 +6,7 @@
 #    By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/15 18:04:28 by ehosta            #+#    #+#              #
-#    Updated: 2025/02/27 16:39:53 by ehosta           ###   ########.fr        #
+#    Updated: 2025/02/28 12:09:47 by ehosta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ override	BUILD_DIR	:=	$(MAKE_DIR)$(shell git branch --show-current)/
 override	SRC_DIR		:=	src/
 override	PARSING_SRC	:=	check_file check_lines check_map check_xpm \
 							create_map init_so_long
-override	RENDER_SRC	:=	init_game render_map
+override	RENDER_SRC	:=	init_game render_map game_hooks
 override	UTILS_SRC	:=	fd tile xpm toolbox errors
 override	SRCS		:=	main $(addprefix parsing/,$(PARSING_SRC)) \
 							$(addprefix rendering/,$(RENDER_SRC)) \

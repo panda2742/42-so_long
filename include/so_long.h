@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:35:39 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/27 16:40:43 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/02/28 12:06:53 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ typedef enum e_map_tile
 	FLOODED_END,
 }	t_map_tile;
 
-# define TILE_ID_OFFSET 5
+# define TILE_ID_OFFSET 4
+
+# define XPM_IMAGES 5
+# define FLOOR_XPM 4
+# define WALL_XPM 3
+# define PLAYER_XPM 2
+# define COLLECTIBLE_XPM 1
+# define END_XPM 0
 
 typedef struct s_pos
 {
@@ -90,8 +97,6 @@ typedef struct s_sl
 # define E_OPENXPM 0b10000000000000000
 # define E_CLOSEXPM 0b100000000000000000
 
-# define XPM_IMAGES 5
-
 /* Parsing */
 t_bool	check_file(t_sl *sl, const char *filename);
 t_bool	check_lines(t_sl *sl, const char *filename);
@@ -103,6 +108,7 @@ int		init_so_long(t_sl *sl, const char *filename);
 /* Rendering */
 int		init_game(t_sl *sl);
 void	render_map(t_sl *sl);
+void	game_hooks(t_sl *sl);
 
 /* Utils */
 t_bool	try_open(t_sl *sl, const char *filename);
