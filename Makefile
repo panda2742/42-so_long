@@ -6,7 +6,7 @@
 #    By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/15 18:04:28 by ehosta            #+#    #+#              #
-#    Updated: 2025/02/28 16:27:06 by ehosta           ###   ########.fr        #
+#    Updated: 2025/02/28 16:33:51 by ehosta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(DIRS)
 
 .PHONY: mlx
 mlx: force
-	make -C mlx all
+	make -C $(MLX) all
 
 .PHONY: libft
 libft: force
