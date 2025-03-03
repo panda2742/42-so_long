@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 09:43:19 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/28 16:22:35 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:11:27 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	init_game(t_sl *sl)
 
 	g = &sl->game;
 	i = -1;
-	while (++i < XPM_IMAGES)
-		g->imgs[i].ptr = NULL;
 	g->player.x = sl->player_pos.x;
 	g->player.y = sl->player_pos.y;
 	g->mlx = mlx_init();

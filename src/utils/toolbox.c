@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:13:37 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/28 16:23:30 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:12:14 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ void	free_everything(t_sl *sl)
 	while (++i < XPM_IMAGES)
 	{
 		if (g->imgs[i].ptr)
-		{
 			mlx_destroy_image(g->mlx, g->imgs[i].ptr);
-		}
 	}
 	if (g->win)
 	{

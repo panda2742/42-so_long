@@ -6,7 +6,7 @@
 /*   By: ehosta <ehosta@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 19:14:40 by ehosta            #+#    #+#             */
-/*   Updated: 2025/02/28 15:47:44 by ehosta           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:13:20 by ehosta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static void	_start(int argc, char **argv, t_sl *sl)
 		return ;
 	}
 	if (0 != init_so_long(sl, argv[1]))
-		return ;
+		return ((void)error_handler(sl->status));
 }
 
 static void	_init_sl_vars(t_sl *sl)
 {
+	int	i;
+
 	sl->status = 0b0;
 	sl->width = 0;
 	sl->height = 0;
@@ -59,4 +61,7 @@ static void	_init_sl_vars(t_sl *sl)
 	sl->game.player.y = 0;
 	sl->game.mlx = NULL;
 	sl->game.win = NULL;
+	i = -1;
+	while (++i < XPM_IMAGES)
+		sl->game.imgs[i].ptr = NULL;
 }
